@@ -2,13 +2,21 @@ import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLogin } from "./useLogin";
+import SpinnerMini from "../../ui/SpinnerMini";
+import { useNavigate } from "react-router";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const { handleSubmit, register, formState, reset } = useForm();
+  const { isLoggingUser, loginUser } = useLogin();
   const { errors } = formState;
   console.log(errors);
   function onSubmit(data) {
     console.log(data);
+    loginUser(data, {
+      onSuccess: () => navigate("/app"),
+    });
     reset();
   }
   return (
@@ -57,7 +65,7 @@ export default function LoginForm() {
           </FormRow>
           <FormRow>
             <button className="w-full bg-blue-800 py-4 text-white transition-colors duration-200 hover:bg-blue-950">
-              Login
+              {isLoggingUser ? <SpinnerMini /> : "Login"}
             </button>
           </FormRow>
         </form>

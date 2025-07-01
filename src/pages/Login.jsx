@@ -1,4 +1,5 @@
 import LoginForm from "../features/authentication/LoginForm";
+import Footer from "../ui/Footer";
 
 export default function Login() {
   return (
@@ -6,10 +7,7 @@ export default function Login() {
       <div className="flex items-center justify-center bg-blue-300">
         <LoginForm />
       </div>
-      <footer className="flex justify-between bg-white px-8 py-2">
-        Hello world
-        <span>&copy;devyalchemist🔸🐥🔸</span>
-      </footer>
+      <Footer />
     </div>
   );
 }

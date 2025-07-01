@@ -1,14 +1,13 @@
-import { Link } from "react-router";
+import Footer from "../ui/Footer";
+import HomeBody from "../ui/HomeBody";
+import HomeHeader from "../ui/HomeHeader";
 
 export default function Home() {
   return (
-    <div className="flex justify-between px-18 py-4">
-      Home
-      <Link to={"/login"}>
-        <button className="rounded-[12px] bg-blue-600 px-6 py-2 text-white">
-          login
-        </button>
-      </Link>
+    <div className="bg-background relative grid h-[100dvh] grid-rows-[auto_1fr_auto]">
+      <HomeHeader  />
+      <HomeBody />
+      <Footer />
     </div>
   );
 }
