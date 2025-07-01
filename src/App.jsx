@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Header from "./ui/header";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import Main from "./pages/Main";
