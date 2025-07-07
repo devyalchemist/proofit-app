@@ -14,10 +14,10 @@ export default function SignUpForm() {
   console.log(errors);
   function onSubmit(data) {
     console.log(data);
-    // loginUser(data, {
-    //   onSuccess: () => navigate("/app"),
-    // });
-    // reset();
+    loginUser(data, {
+      onSuccess: () => navigate("/app"),
+    });
+    reset();
   }
   return (
     <div className="w-80 space-y-1 divide-y divide-gray-200 bg-white sm:w-120">
