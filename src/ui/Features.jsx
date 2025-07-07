@@ -21,7 +21,7 @@ export default function Features() {
       <h1 className="font-default py-[4rem] text-center text-[2rem] text-white sm:text-[4rem]">
         Features
       </h1>
-      <div className="relative m-auto flex w-[90%] flex-wrap justify-between gap-2 gap-x-2 sm:gap-4">
+      <div className="relative m-auto flex w-[90%] flex-wrap justify-between gap-x-2 sm:gap-4">
         {tips.map((tip) => (
           <TipCard key={tip}>{tip}</TipCard>
         ))}

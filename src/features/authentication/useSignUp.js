@@ -1,14 +1,14 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { loginUser as loginUserApi } from "../../services/apiAuth";
+import { signUpUser as signUpUserApi } from "../../services/apiAuth";
 
 export function useLogin() {
   const {
-    mutate: loginUser,
-    isPending: isLoggingUser,
+    mutate: signUpUser,
+    isPending: isSigningUp,
     error,
   } = useMutation({
-    mutationFn: loginUserApi,
+    mutationFn: signUpUserApi,
     onSuccess: () => {
       toast.success("Login Succesful");
     },
@@ -16,5 +16,5 @@ export function useLogin() {
       toast.error(err.message);
     },
   });
-  return { loginUser, isLoggingUser, error };
+  return { signUpUser, isSigningUp, error };
 }

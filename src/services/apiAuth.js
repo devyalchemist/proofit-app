@@ -11,3 +11,32 @@ export async function loginUser({ email, password }) {
   }
   return data;
 }
+
+export async function getUser() {
+  const { data: session } = await supabase.auth.getSession();
+  if (!session.session) return null;
+
+  const {
+    data: { user },
+    error,
+  } = await supabase.getUser();
+  if (error) throw new Error(error.message);
+  console.log(user);
+  return user;
+}
+
+export async function signUpUser({ email, password, fullName }) {
+  let { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: {
+        fullName,
+        avatar: "",
+      },
+    },
+  });
+  if (error) throw new Error(error.message);
+
+  return data;
+}
