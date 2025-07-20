@@ -1,8 +1,11 @@
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { signUpUser as signUpUserApi } from "../../services/apiAuth";
+import { useNavigate } from "react-router";
 
-export function useLogin() {
+export function useSignUp() {
+  const navigate = useNavigate();
+
   const {
     mutate: signUpUser,
     isPending: isSigningUp,
@@ -10,7 +13,9 @@ export function useLogin() {
   } = useMutation({
     mutationFn: signUpUserApi,
     onSuccess: () => {
-      toast.success("Login Succesful");
+      toast.success("Account Created");
+      navigate("/app");
+      // navigate("/login")
     },
     onError: (err) => {
       toast.error(err.message);

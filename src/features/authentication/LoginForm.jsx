@@ -20,9 +20,9 @@ export default function LoginForm() {
     reset();
   }
   return (
-    <div className="w-80 space-y-1 divide-y divide-gray-200 bg-white sm:w-120">
-      <h1 className="font-default py-2 text-center text-[1.2rem] text-blue-900">
-        proofit
+    <div className="w-80 space-y-1 divide-y divide-gray-200 sm:w-120">
+      <h1 className="font-default py-2 text-center text-[1.2rem] text-black">
+        proo<span className="text-component">fit</span>
       </h1>
       <div className="px-4">
         <h1 className="font-default py-2 text-center text-[1.8rem]">
@@ -44,7 +44,7 @@ export default function LoginForm() {
               id="email"
               //   type="email"
               placeholder="example@gmail.com"
-              className="w-full flex-1 rounded-[4px] border-2 border-none bg-blue-200 p-2"
+              className="w-full flex-1 rounded-[4px] border-2 border-none bg-green-300 p-2"
             />
           </FormRow>
           <FormRow label={"password"} error={errors?.password?.message}>
@@ -59,12 +59,12 @@ export default function LoginForm() {
                 id="password"
                 type="password"
                 placeholder="provide your password"
-                className="w-full rounded-[4px] border-2 border-none bg-blue-200 p-2"
+                className="w-full rounded-[4px] border-2 border-none bg-green-300 p-2"
               />
             </div>
           </FormRow>
           <FormRow>
-            <button className="w-full bg-blue-800 py-4 text-white transition-colors duration-200 hover:bg-blue-950">
+            <button className="w-full bg-green-500 py-4 text-white transition-colors duration-200 hover:bg-blue-950">
               {isLoggingUser ? <SpinnerMini /> : "Login"}
             </button>
           </FormRow>

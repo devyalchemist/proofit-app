@@ -17,18 +17,37 @@ export default function Features() {
   //     "overflow-y-scroll [-ms-overflow-style:none] [scrollbar-width:none]";
   //   const noScrollBar = {};
   return (
-    <div>
-      <h1 className="font-default py-[4rem] text-center text-[2rem] text-white sm:text-[4rem]">
+     <div className="mb-[8rem]">
+      <h1 className="font-default py-[4rem] text-center text-[2rem] sm:text-[4rem]">
         Features
       </h1>
-      <div className="relative m-auto flex w-[90%] flex-wrap justify-between gap-x-2 sm:gap-4">
+
+      {/* Scrollable container on mobile, wraps on desktop */}
+      <div className="m-auto flex w-[90%] flex-nowrap gap-4 overflow-x-auto sm:flex-wrap sm:justify-center sm:gap-x-16">
         {tips.map((tip) => (
           <TipCard key={tip}>{tip}</TipCard>
         ))}
-        <div className="pointer-events-none sticky top-0 left-0 h-full w-10 bg-gradient-to-r from-white/20 to-transparent"></div>
-        {/* Right fade */}
-        <div className="pointer-events-none sticky top-0 right-0 h-full w-10 bg-gradient-to-l from-white/20 to-transparent"></div>
       </div>
     </div>
+    // <section className="mx-auto mt-10 mb-20 w-[95%] max-w-7xl px-4">
+    //   <h1 className="font-default mb-10 text-center text-[2rem] sm:text-[3rem] md:text-[4rem]">
+    //     Features
+    //   </h1>
+    //   <div className="flex flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
+    //     {tips.map((tip) => (
+    //       <TipCard key={tip}>{tip}</TipCard>
+    //     ))}
+    //   </div>
+    // </section>
+    // <div className="mb-[8rem]">
+    //   <h1 className="font-default py-[4rem] text-center text-[2rem] sm:text-[4rem] ">
+    //     Features
+    //   </h1>
+    //   <div className="m-auto flex w-[90%] flex-wrap gap-4 gap-y-6 sm:gap-x-16">
+    //     {tips.map((tip) => (
+    //       <TipCard key={tip}>{tip}</TipCard>
+    //     ))}
+    //   </div>
+    // </div>
   );
 }

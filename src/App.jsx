@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -39,8 +40,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/app",
-    Component: AppLayout,
-
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -84,7 +88,7 @@ export default function App() {
               maxWidth: "500px",
               fontFamily: "Montserrat",
               padding: "16px 24px",
-              backgroundColor: "var(--color-grey-0)",
+              backgroundColor: "white",
               color: "var(--color-grey-700)",
             },
           }}

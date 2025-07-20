@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @theme {
-  --font-default: "Poppins", "san-serif";
+  --font-default: "Poppins", "sans-serif";
+  --font-writing: "Montserrat", "sans-serif";
   --color-background: #021526;
-  --color-component: #6eacda;
+  /* --color-component: #6eacda; */
+  --color-component: theme("colors.green.500");
+}
+@layer components {
+  .custom-gradient {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600;
+  }
 }

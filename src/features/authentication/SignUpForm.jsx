@@ -1,22 +1,31 @@
 import { useForm } from "react-hook-form";
 import FormRow from "../../ui/FormRow";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faLock } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useLogin } from "./useLogin";
 import SpinnerMini from "../../ui/SpinnerMini";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
+import { useSignUp } from "./useSignUp";
+import { useState } from "react";
 
 export default function SignUpForm() {
-  const navigate = useNavigate();
+  const [passwordHidden, setPasswordHidden] = useState(true);
+  const [passwordHidden2, setPasswordHidden2] = useState(true);
+  const { signUpUser, isSigningUp } = useSignUp();
   const { handleSubmit, register, formState, reset, getValues } = useForm();
-  const { isLoggingUser, loginUser } = useLogin();
   const { errors } = formState;
   console.log(errors);
   function onSubmit(data) {
+    const { email, fullName, password } = data;
+    signUpUser(
+      { email, password, fullName },
+      {
+        onSuccess: () => reset(),
+      },
+    );
     console.log(data);
-    loginUser(data, {
-      onSuccess: () => navigate("/app"),
-    });
+    // loginUser(data, {
+    //   onSuccess: () => navigate("/app"),
+    // });
     reset();
   }
   return (
@@ -32,6 +41,17 @@ export default function SignUpForm() {
           className="flex flex-col gap-4 py-4"
           onSubmit={handleSubmit(onSubmit)}
         >
+          <FormRow label="fullName" error={errors?.fullName?.message}>
+            <input
+              {...register("fullName", {
+                required: "Please fill out this field",
+              })}
+              id="fullName"
+              type="text"
+              placeholder="john doe"
+              className="w-full flex-1 rounded-[4px] border-2 border-none bg-blue-200 p-2"
+            />
+          </FormRow>
           <FormRow label="email" error={errors?.email?.message}>
             <input
               {...register("email", {
@@ -50,33 +70,48 @@ export default function SignUpForm() {
           <FormRow label={"password"} error={errors?.password?.message}>
             <div className="relative flex w-full items-center">
               <span className="absolute right-2 text-blue-400">
-                <FontAwesomeIcon icon={faLock} />
+                <FontAwesomeIcon
+                  onClick={() => setPasswordHidden2((prev) => !prev)}
+                  icon={passwordHidden2 ? faLock : faEye}
+                />
               </span>
               <input
                 {...register("password", {
                   required: "Please fill out this field",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be longer than 8 characters",
+                  },
                 })}
                 id="password"
-                type="password"
+                type={passwordHidden2 ? "password" : "text"}
                 placeholder="provide your password"
                 className="w-full rounded-[4px] border-2 border-none bg-blue-200 p-2"
               />
             </div>
           </FormRow>
-          <FormRow label={"Confirm Password"} error={errors?.password?.message}>
+          <FormRow
+            label={"Confirm Password"}
+            error={errors?.confirmPassword?.message}
+          >
             <div className="relative flex w-full items-center">
               <span className="absolute right-2 text-blue-400">
-                <FontAwesomeIcon icon={faLock} />
+                <FontAwesomeIcon
+                  onClick={() => setPasswordHidden((prev) => !prev)}
+                  icon={passwordHidden ? faLock : faEye}
+                />
               </span>
               <input
-                {...register("confirmpassword", {
+                {...register("confirmPassword", {
                   required: "Please fill out this field",
                   validate: (data) => {
-                    data !== getValues().password && "Passwords must match";
+                    return (
+                      data === getValues().password || "Passwords must match"
+                    );
                   },
                 })}
-                id="password"
-                type="password"
+                id="confirmPassword"
+                type={passwordHidden ? "password" : "text"}
                 placeholder="provide your password"
                 className="w-full rounded-[4px] border-2 border-none bg-blue-200 p-2"
               />
@@ -84,13 +119,13 @@ export default function SignUpForm() {
           </FormRow>
           <FormRow>
             <button className="w-full bg-blue-800 py-4 text-white transition-colors duration-200 hover:bg-blue-950">
-              {isLoggingUser ? <SpinnerMini /> : "SignUp"}
+              {isSigningUp ? <SpinnerMini /> : "SignUp"}
             </button>
           </FormRow>
           <div className="flex justify-between">
-            <h1>Not yet a user</h1>{" "}
-            <Link to="/sign-up">
-              <span className="hover:text-blue-600">Sign Up</span>
+            <h1>Already a user</h1>{" "}
+            <Link to="/login">
+              <span className="hover:text-blue-600">SignIn</span>
             </Link>
           </div>
         </form>

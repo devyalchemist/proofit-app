@@ -1,0 +1,20 @@
+styling proposed by ai:
+Element	Recommended Color
+Buttons/CTA	bg-green-500 hover:bg-green-600
+Highlights/Badges	bg-green-300 text-green-800
+Navbar/Footer	bg-green-800 text-white
+Shadows/Hover FX	shadow-green-500/40
+
+Role	Color	Tailwind Class
+Background	Soft Gray	gray-50 or zinc-100
+Typography	Deep Gray	gray-700 or neutral-800
+Vibrant Pop	Fresh Orange	orange-400 or amber-400
+Neutral Base	Slate Blue/Black	slate-900, slate-700
+
+Header content:
+Element	Purpose
+Logo	Brand identity
+Login / Sign Up	Primary call-to-action
+About / Why Proofit?	Quick credibility boost
+Features / How It Works	High-level app overview
+CTA Button	(Optional) Jump-to-section like “Start Free” or “See Demo”
